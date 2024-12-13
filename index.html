@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers Scoreboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fce4ec;
+            background-image: linear-gradient(45deg, #fce4ec 25%, transparent 25%), 
+                              linear-gradient(-45deg, #fce4ec 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #fce4ec 75%), 
+                              linear-gradient(-45deg, transparent 75%, #fce4ec 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .scoreboard {
+            width: 400px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #d4a5a5;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .scores {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .player {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        .player h2 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #d4a5a5;
+        }
+        .score {
+            font-size: 2em;
+            margin: 0;
+            color: #d81b60;
+        }
+        .total-score {
+            font-size: 1.5em;
+            margin: 20px 0 0;
+            color: #d81b60;
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background-color: #fce4ec;
+        }
+        .controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            background-color: #d81b60;
+            color: white;
+        }
+        .controls button:hover {
+            background-color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+
+<div class="scoreboard">
+    <div class="header">Checkers Scoreboard</div>
+    <div class="scores">
+        <div class="player" id="player1">
+            <h2>Player 1</h2>
+            <p class="score" id="score1">0</p>
+        </div>
+        <div class="player" id="player2">
+            <h2>Player 2</h2>
+            <p class="score" id="score2">0</p>
+        </div>
+    </div>
+    <div class="total-score" id="totalScore">Total Score: 0</div>
+    <div class="controls">
+        <button onclick="increaseScore('score1')">Player 1 +</button>
+        <button onclick="increaseScore('score2')">Player 2 +</button>
+        <button onclick="resetScores()">Reset</button>
+    </div>
+</div>
+
+<script>
+    function increaseScore(playerId) {
+        const scoreElement = document.getElementById(playerId);
+        let currentScore = parseInt(scoreElement.textContent, 10);
+        scoreElement.textContent = currentScore + 1;
+        updateTotalScore();
+    }
+
+    function resetScores() {
+        document.getElementById('score1').textContent = '0';
+        document.getElementById('score2').textContent = '0';
+        updateTotalScore();
+    }
+
+    function updateTotalScore() {
+        const score1 = parseInt(document.getElementById('score1').textContent, 10);
+        const score2 = parseInt(document.getElementById('score2').textContent, 10);
+        const totalScore = score1 + score2;
+        document.getElementById('totalScore').textContent = 'Total Score: ' + totalScore;
+    }
+</script>
+
+</body>
+</html>
